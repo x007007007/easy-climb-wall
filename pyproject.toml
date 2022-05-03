@@ -8,7 +8,8 @@ authors = [
 license-expression = "MIT"
 dependencies = [
     "django",
-    'psutil'
+    'psutil',
+    'docker',
 ]
 requires-python = ">=3.10"
 

@@ -50,7 +50,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'x007007007.easyclimbwall.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,6 +77,7 @@ DATA_FOLDER = os.environ.get("DATA_FILDER", BASE_DIR)
 SERVICE_CONFIG_FOLDER = os.path.join(DATA_FOLDER, "conf")
 SERVICE_PID_FOLDER = os.path.join(DATA_FOLDER, "pid")
 SS_SERVER_CMD = os.environ.get("SS_SERVER_CMD", "ss-server")
+DOCKER_SERVICE_NAME = os.environ.get("DOCKER_SERVICE_NAME", 'traefik_traefik')
 
 DATABASES = {
     'default': {

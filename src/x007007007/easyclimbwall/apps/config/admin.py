@@ -20,6 +20,7 @@ class ProxyConfigModelAdmin(admin.ModelAdmin):
         for obj in queryset:
             assert isinstance(obj, ProxyConfigModel)
             obj.start_server()
+        ProxyConfigModel.update_service_label()
 
 
     actions = [

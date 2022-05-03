@@ -6,6 +6,7 @@ from django.db import models
 from django.conf import settings
 import psutil
 import subprocess
+import docker
 
 
 class ProxyConfigModel(models.Model):
@@ -75,3 +76,44 @@ class ProxyConfigModel(models.Model):
             self.generate_config()
         print(f"run: {cmds}")
         process = subprocess.Popen(cmds)
+
+    def stop_server(self):
+        if pid := self.read_pid():
+            psutil.Process(pid).terminate()
+
+    @staticmethod
+    def generate_new_label():
+        new_labels = {
+        }
+        for obj in ProxyConfigModel.objects.all(enabled=True):
+            port = obj.get_server_port()
+            path = obj.get_config_path()
+            new_labels.update({
+                f'traefik.http.routers.ss-server-no-{obj.pk}-https.rule': f'Host(`{obj.host}`) & ',
+                f'traefik.http.routers.ss-server-no-{obj.pk}-https.entrypoints': 'https',
+                f'traefik.http.routers.ss-server-no-{obj.pk}-https.tls': 'true',
+                f'traefik.http.routers.ss-server-no-{obj.pk}-https.service': f'ss-server-no-{obj.pk}',
+                f'traefik.http.services.ss-server-no-{obj.pk}.loadbalancer.server.port': f'{obj.get_server_port()}',
+            })
+        return new_labels
+
+    @staticmethod
+    def update_service_label():
+        client = docker.from_env()
+        for service in client.api.services({'name': settings.DOCKER_SERVICE_NAME}):
+            service = client.services.get(service['ID'])
+            old_label = service.attrs['Spec'].get("Labels", {})
+            old_json = json.dumps(old_label)
+            new_labels = {}
+            for k in old_label:
+                if 'ss-server-no' not in k:
+                    new_labels[k] = old_label[k]
+            new_labels.update(ProxyConfigModel.generate_new_label())
+            new_json = json.dumps(new_labels)
+            if old_json != new_json:
+                print(f"update_labels: {new_labels}")
+                service.update(
+                    labels=new_labels
+                )
+
+
