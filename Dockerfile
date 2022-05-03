@@ -16,7 +16,7 @@ COPY ./ ./
 RUN pdm install \
     && pdm export -f requirements > requirements.txt \
     && pdm export -f setuppy >setup.py \
-    && python setup.py bdist_build
+    && python setup.py bdist_wheel
 
 FROM base
 WORKDIR /opt/easyclimbwall
