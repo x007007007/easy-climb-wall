@@ -31,5 +31,5 @@ ENV DATA_FOLDER=/data \
     DOCKER_SERVICE_NAME=climb-wall-config \
     SECRET_KEY=
 
-CMD ["gunicorn", "x007007007.easyclimbwall.wsgi:application", "-k", "gevent"]
+CMD ["gunicorn", "x007007007.easyclimbwall.wsgi:application", "-b", "0.0.0.0:8000", "-k", "gevent"]
 VOLUME ["/data"]
