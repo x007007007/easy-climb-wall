@@ -1,0 +1,21 @@
+[project]
+name = "easy-climb-wall"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "xingci.xu", email = "x007007007@hotmail.com"},
+]
+license-expression = "MIT"
+dependencies = [
+    "django",
+    'psutil'
+]
+requires-python = ">=3.10"
+
+[project.urls]
+Homepage = ""
+[tool.pdm]
+
+[build-system]
+requires = ["pdm-pep517>=0.12.0"]
+build-backend = "pdm.pep517.api"
