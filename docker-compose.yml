@@ -7,12 +7,22 @@ networks:
 services:
   climb-wall:
     image:  x007007007/easy-climb-wall
+    networks:
+      - traefik-public
     environment:
       DOCKER_SERVICE_NAME: 'proxy-climb-wall'
       SECRET_KEY: ${SECRET_KEY:-set a secret key}
     volumes:
       - climb-wall-data:/data
+    deploy:
+      placement:
+        constraints:
+          - node.labels.proxy-climb-wall==true
+      labels:
+        - traefik.enable=true
+        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=traefik-public
 
 volumes:
   climb-wall-data:
-    name: 'climb-wall-data'
+    name: 'proxy-climb-wall-data'
