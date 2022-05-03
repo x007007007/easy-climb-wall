@@ -1,0 +1,18 @@
+version: "3.8"
+
+networks:
+  traefik-public:
+    external: true
+
+services:
+  climb-wall:
+    image:  x007007007/easy-climb-wall
+    environment:
+      DOCKER_SERVICE_NAME: 'proxy-climb-wall'
+      SECRET_KEY: ${SECRET_KEY:-set a secret key}
+    volumes:
+      - climb-wall-data:/data
+
+volumes:
+  climb-wall-data:
+    name: 'climb-wall-data'
