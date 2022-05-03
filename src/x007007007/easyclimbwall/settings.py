@@ -27,7 +27,7 @@ DEBUG = os.environ.get("DEBUG", 'false').lower() in ['true', '0', 'yes']
 ALLOWED_HOSTS = [
     "*",
 ]
-
+CSRF_TRUSTED_ORIGINS = ['https://*']
 
 # Application definition
 
