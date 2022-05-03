@@ -85,7 +85,7 @@ class ProxyConfigModel(models.Model):
     def generate_new_label():
         new_labels = {
         }
-        for obj in ProxyConfigModel.objects.all(enabled=True):
+        for obj in ProxyConfigModel.objects.filter(enabled=True):
             port = obj.get_server_port()
             path = obj.get_config_path()
             new_labels.update({
