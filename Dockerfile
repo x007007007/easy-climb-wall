@@ -16,6 +16,8 @@ COPY ./ ./
 RUN pdm install \
     && pdm export -f requirements > requirements.txt \
     && pdm export -f setuppy >setup.py \
+    && pip install -r requirements.txt \
+    && python setup.py develop \
     && python setup.py bdist_wheel
 
 FROM base
