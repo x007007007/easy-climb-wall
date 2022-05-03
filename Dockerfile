@@ -22,5 +22,5 @@ RUN pip install easy_climb_wall-0.1.0-py3-none-any.whl \
     && python -m x007007007.easyclimbwall collectstatic  --no-input
 ENV DATA_FOLDER=/data
 
-COMMAND ['gunicron', 'x007007007.easyclimbwall.wsgi:application', '-k', 'gevent']
+CMD ['gunicron', 'x007007007.easyclimbwall.wsgi:application', '-k', 'gevent']
 
