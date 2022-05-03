@@ -32,4 +32,4 @@ ENV DATA_FOLDER=/data \
     SECRET_KEY=
 
 CMD ["gunicorn", "x007007007.easyclimbwall.wsgi:application", "-k", "gevent"]
-
+VOLUME ["/data"]
