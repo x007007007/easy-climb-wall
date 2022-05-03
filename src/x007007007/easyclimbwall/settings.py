@@ -81,6 +81,8 @@ SERVICE_PID_FOLDER = os.path.join(DATA_FOLDER, "pid")
 SS_SERVER_CMD = os.environ.get("SS_SERVER_CMD", "ss-server")
 SS_V2RAY_PLUGIN_PATH = os.environ.get("SS_V2RAY_PLUGIN_PATH", "v2ray-plugin")
 DOCKER_SERVICE_NAME = os.environ.get("DOCKER_SERVICE_NAME", 'traefik_traefik')
+DOCKER_DEFAULT_CERT_SOLVER = os.environ.get("DOCKER_DEFAULT_CERT_SOLVER", "le")
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

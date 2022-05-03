@@ -89,9 +89,10 @@ class ProxyConfigModel(models.Model):
             port = obj.get_server_port()
             path = obj.get_config_path()
             new_labels.update({
-                f'traefik.http.routers.ss-server-no-{obj.pk}-https.rule': f'Host(`{obj.host}`) & ',
+                f'traefik.http.routers.ss-server-no-{obj.pk}-https.rule': f'Host(`{obj.host}`) && PathPrefix(`{obj.path}`)',
                 f'traefik.http.routers.ss-server-no-{obj.pk}-https.entrypoints': 'https',
                 f'traefik.http.routers.ss-server-no-{obj.pk}-https.tls': 'true',
+                f"traefik.http.routers.ss-server-no-{obj.pk}-https.tls.certresolver": settings.DOCKER_DEFAULT_CERT_SOLVER,
                 f'traefik.http.routers.ss-server-no-{obj.pk}-https.service': f'ss-server-no-{obj.pk}',
                 f'traefik.http.services.ss-server-no-{obj.pk}.loadbalancer.server.port': f'{obj.get_server_port()}',
             })
