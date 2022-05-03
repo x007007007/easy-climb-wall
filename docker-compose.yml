@@ -23,7 +23,7 @@ services:
         - traefik.enable=true
         - traefik.constraint-label=traefik-public
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.climb_wall-https.rule=Host(`climb_wall.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.climb_wall-https.rule=Host(`climb-wall.${DOMAIN?Variable not set}`)
         - traefik.http.routers.climb_wall-https.entrypoints=https
         - traefik.http.routers.climb_wall-https.tls=true
         - traefik.http.routers.climb_wall-https.service=climb_wall
