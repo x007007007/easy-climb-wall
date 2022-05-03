@@ -20,7 +20,11 @@ WORKDIR /opt/easyclimbwall
 COPY --from=build dist/ ./
 RUN pip install easy_climb_wall-0.1.0-py3-none-any.whl \
     && python -m x007007007.easyclimbwall collectstatic  --no-input
-ENV DATA_FOLDER=/data
+ENV DATA_FOLDER=/data \
+    SS_SERVER_CMD=ss-server \
+    SS_V2RAY_PLUGIN_PATH=/bin/v2ray-plugin_linux_amd64 \
+    DOCKER_SERVICE_NAME=climb-wall-config \
+    SECRET_KEY=
 
 CMD ['gunicron', 'x007007007.easyclimbwall.wsgi:application', '-k', 'gevent']
 
