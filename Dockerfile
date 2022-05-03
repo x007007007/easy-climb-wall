@@ -17,7 +17,7 @@ RUN pdm install && pdm build
 
 FROM base
 WORKDIR /opt/easyclimbwall
-COPY --from=builder dist/ ./
+COPY --from=builder /opt/builder/dist/ ./
 RUN pip install easy_climb_wall-0.1.0-py3-none-any.whl \
     && python -m x007007007.easyclimbwall collectstatic  --no-input
 ENV DATA_FOLDER=/data \
