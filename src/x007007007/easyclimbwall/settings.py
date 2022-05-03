@@ -24,7 +24,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'NOT_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", 'false').lower() in ['true', '0', 'yes']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*",
+]
 
 
 # Application definition
@@ -82,7 +84,7 @@ DOCKER_SERVICE_NAME = os.environ.get("DOCKER_SERVICE_NAME", 'traefik_traefik')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DATA_FOLDER / 'db.sqlite3',
+        'NAME': f"{DATA_FOLDER}/db.sqlite3",
     }
 }
 
