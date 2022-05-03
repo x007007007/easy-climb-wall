@@ -29,7 +29,8 @@ ENV DATA_FOLDER=/data \
     SS_SERVER_CMD=ss-server \
     SS_V2RAY_PLUGIN_PATH=/bin/v2ray-plugin_linux_amd64 \
     DOCKER_SERVICE_NAME=climb-wall-config \
-    SECRET_KEY=
+    SECRET_KEY= \
+    TRUSTED_ORIGINS=
 
 CMD ["gunicorn", "x007007007.easyclimbwall.wsgi:application", "-b", "0.0.0.0:8000", "-k", "gevent"]
 VOLUME ["/data"]
