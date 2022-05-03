@@ -55,7 +55,7 @@ class ProxyConfigModel(models.Model):
                 "password": self.password,
                 "timeout": self.timeout,
                 "method": self.encryption,
-                "plugin": "/usr/bin/v2ray-plugin",
+                "plugin": settings.SS_V2RAY_PLUGIN_PATH,
                 "plugin_opts": f"server;path={self.path}",
                 "mode": "tcp_only",
                 "reuse_port": True,

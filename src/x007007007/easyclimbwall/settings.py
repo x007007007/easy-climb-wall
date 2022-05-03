@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'NOT_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", 'false').lower() in ['true', '0', 'yes']
 
 ALLOWED_HOSTS = []
 
@@ -72,13 +72,13 @@ WSGI_APPLICATION = 'x007007007.easyclimbwall.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATA_FOLDER = os.environ.get("DATA_FILDER", BASE_DIR)
+DATA_FOLDER = os.environ.get("DATA_FOLDER", BASE_DIR)
 
 SERVICE_CONFIG_FOLDER = os.path.join(DATA_FOLDER, "conf")
 SERVICE_PID_FOLDER = os.path.join(DATA_FOLDER, "pid")
 SS_SERVER_CMD = os.environ.get("SS_SERVER_CMD", "ss-server")
+SS_V2RAY_PLUGIN_PATH = os.environ.get("SS_V2RAY_PLUGIN_PATH", "v2ray-plugin")
 DOCKER_SERVICE_NAME = os.environ.get("DOCKER_SERVICE_NAME", 'traefik_traefik')
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = "./static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
