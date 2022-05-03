@@ -16,7 +16,7 @@ dependencies = [
 requires-python = ">=3.10"
 
 [project.urls]
-Homepage = ""
+Homepage = "https://github.com/x007007007/easy-climb-wall"
 [tool.pdm]
 
 [build-system]
