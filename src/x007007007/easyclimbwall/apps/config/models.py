@@ -72,8 +72,7 @@ class ProxyConfigModel(models.Model):
             self.get_pid_file_path(),
             "-u"
         ]
-        if not os.path.exists(config):
-            self.generate_config()
+        self.generate_config()
         print(f"run: {cmds}")
         process = subprocess.Popen(cmds)
 
