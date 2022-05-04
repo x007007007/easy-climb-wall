@@ -23,6 +23,7 @@ RUN pdm install \
 FROM base
 WORKDIR /opt/easyclimbwall
 COPY --from=builder /opt/builder/dist/ ./
+COPY ./.docker/ /
 RUN pip install easy_climb_wall-0.1.0-py3-none-any.whl \
     && python -m x007007007.easyclimbwall collectstatic  --no-input
 ENV DATA_FOLDER=/data \
@@ -31,6 +32,6 @@ ENV DATA_FOLDER=/data \
     DOCKER_SERVICE_NAME=climb-wall-config \
     SECRET_KEY= \
     TRUSTED_ORIGINS=
-
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["gunicorn", "x007007007.easyclimbwall.wsgi:application", "-b", "0.0.0.0:8000", "-k", "gevent"]
 VOLUME ["/data"]
