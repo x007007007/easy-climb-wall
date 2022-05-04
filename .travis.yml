@@ -11,21 +11,20 @@ env:
 before_install:
   - echo "`date` - travis CI build"
   - echo ${IMAGE_COMMIT_NAME}
-  - docker build --build-arg=VERSION=${VERSION} -t ${IMAGE_COMMIT_NAME} .
-
-before_deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build --build-arg=VERSION=${VERSION} -t ${IMAGE_COMMIT_NAME} .
+  - docker push ${IMAGE_COMMIT_NAME}
 
 deploy:
   - provider: script
     script:
-      - docker tag ${IMAGE_COMMIT_NAME} {$IMAGE_TAG_LATEST}
-      - docker push {$IMAGE_TAG_NAME}
+      - docker tag ${IMAGE_COMMIT_NAME} {IMAGE_LATEST_NAME} || true
+      - docker push {IMAGE_LATEST_NAME}
     on:
       branch: master
   - provider: script
     script:
-      - docker tag ${IMAGE_COMMIT_NAME} {$IMAGE_TAG_NAME}
+      - docker tag ${IMAGE_COMMIT_NAME} {$IMAGE_TAG_NAME} || true
       - docker push {$IMAGE_TAG_NAME}
     on:
       tags: true
