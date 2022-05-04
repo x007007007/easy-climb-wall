@@ -5,6 +5,7 @@ RUN apt-get update \
     && wget https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.1/v2ray-plugin-linux-amd64-v1.3.1.tar.gz \
     && tar -xzvf v2ray-plugin-linux-*-v1.3.1.tar.gz -C /bin/ \
     && ln -s /bin/v2ray-plugin_linux_amd64 /bin/v2ray-plugin
+ARG VERSION
 FROM base as builder
 
 WORKDIR /opt/builder
