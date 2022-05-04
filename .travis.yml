@@ -6,9 +6,12 @@ env:
   - IMAGE_LATEST_NAME=x007007007/easy-climb-wall:latest
   - IMAGE_TAG_NAME=x007007007/easy-climb-wall:${TRAVIS_TAG}
   - VERSION=${TRAVIS_TAG#v}
+  - IMAGE_COMMIT_NAME=x007007007/easy-climb-wall:latest
 
 before_install:
   - echo "`date` - travis CI build"
+  - echo ${IMAGE_COMMIT_NAME}
+
 install:
   - docker build --build-arg=VERSION=${VERSION} -t ${IMAGE_COMMIT_NAME} .
 
