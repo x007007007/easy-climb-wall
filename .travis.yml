@@ -2,11 +2,11 @@ language: python
 services:
   - docker
 env:
-  - IMAGE_COMMIT_NAME=x007007007/easy-climb-wall:${TRAVIS_COMMIT}
-  - IMAGE_LATEST_NAME=x007007007/easy-climb-wall:latest
-  - IMAGE_TAG_NAME=x007007007/easy-climb-wall:${TRAVIS_TAG}
-  - VERSION=${TRAVIS_TAG#v}
-  - IMAGE_COMMIT_NAME=x007007007/easy-climb-wall:latest
+  global:
+    - IMAGE_COMMIT_NAME=x007007007/easy-climb-wall:${TRAVIS_COMMIT}
+    - IMAGE_LATEST_NAME=x007007007/easy-climb-wall:latest
+    - IMAGE_TAG_NAME=x007007007/easy-climb-wall:${TRAVIS_TAG}
+    - VERSION=${TRAVIS_TAG#v}
 
 before_install:
   - echo "`date` - travis CI build"
