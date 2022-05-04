@@ -11,8 +11,6 @@ env:
 before_install:
   - echo "`date` - travis CI build"
   - echo ${IMAGE_COMMIT_NAME}
-
-install:
   - docker build --build-arg=VERSION=${VERSION} -t ${IMAGE_COMMIT_NAME} .
 
 before_deploy:
