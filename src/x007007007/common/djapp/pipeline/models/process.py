@@ -80,10 +80,13 @@ class ProcessModel(models.Model):
                 else:
                     break
             else:
-                self.current_status = self.change.dst
-                self.save(update_fields=(
-                    'current_status',
-                ))
+                rows = self.__class__.objects.filter(
+                    id=self.id,
+                    current_status=self.current_status
+                ).change_status(self.change.dst)
+                if rows == 0:
+                    warnings.warn("status change ")
+                    return False
                 for post_action in self.change.changestatusactionmodel_set.filter(
                     group=ChangeStatusActionModel.POST_CHANGED
                 ).order_by(
