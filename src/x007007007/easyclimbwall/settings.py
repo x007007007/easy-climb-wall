@@ -27,7 +27,7 @@ DEBUG = os.environ.get("DEBUG", 'false').lower() in ['true', '0', 'yes']
 ALLOWED_HOSTS = [
     "*",
 ]
-CSRF_TRUSTED_ORIGINS = os.environ.get("TRUSTED_ORIGINS", "*").split(";")
+CSRF_TRUSTED_ORIGINS = os.environ.get("TRUSTED_ORIGINS", "https://*").split(";")
 
 # Application definition
 
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'x007007007.easyclimbwall.apps.config.apps.ConfigEasyClimbWall',
+    'x007007007.common.djapp.pipeline.apps.X007CommonDjAppPipelineAppConfig',
+    'x007007007.common.djapp.action',
 ]
 
 MIDDLEWARE = [
