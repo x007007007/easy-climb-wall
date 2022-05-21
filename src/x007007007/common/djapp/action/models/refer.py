@@ -19,6 +19,9 @@ class ReferModel(models.Model):
     )
     enable = models.BooleanField(default=True)
 
+    action_retry = models.IntegerField(default=3)
+    action_retry_interval = models.IntegerField(default=60)
+
     class Meta:
         unique_together = (
             ('config_type', 'config_id'),
@@ -27,3 +30,6 @@ class ReferModel(models.Model):
     @property
     def get_config(self):
         return f"{self.config}"
+
+    def run_action(self, config):
+        return self.run_action(config)
