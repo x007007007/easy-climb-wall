@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'x007007007.easyclimbwall.apps.config.apps.ConfigEasyClimbWall',
     'x007007007.common.djapp.pipeline.apps.X007CommonDjAppPipelineAppConfig',
     'x007007007.common.djapp.action',
+    'x007007007.common.djapp.callback_proxy',
+    'x007007007.common.djapp.code',
 ]
 
 MIDDLEWARE = [

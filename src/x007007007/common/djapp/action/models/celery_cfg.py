@@ -9,6 +9,9 @@ class CeleryCfgModel(CfgModelBase):
     backend = models.CharField(max_length=254)
     task_args = models.JSONField()
 
+    eta_delta_second = models.PositiveIntegerField(null=True, blank=True)
+    expires = models.PositiveIntegerField(default=120)
+
     def run_action(self, config):
         import celery
         cclient = celery.Celery(

@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("pipeline/", include("x007007007.common.djapp.pipeline.urls")),
+    path("callback/", include("x007007007.common.djapp.callback_proxy.urls")),
 ] + static(
     settings.STATIC_URL, document_root=settings.STATIC_ROOT
 )

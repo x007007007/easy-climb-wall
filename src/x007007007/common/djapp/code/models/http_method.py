@@ -22,3 +22,6 @@ class HttpMethod(models.Model):
         ),
         max_length=16
     )
+
+    def __str__(self):
+        return f"<{self.__class__.__name__} ({self.id}) {self.name}>"
