@@ -1,0 +1,28 @@
+- model: common_code.httpmethod
+  pk: 1
+  fields:
+    name: GET
+- model: common_code.httpmethod
+  pk: 2
+  fields:
+    name: POST
+- model: common_code.httpmethod
+  pk: 3
+  fields:
+    name: PUT
+- model: common_code.httpmethod
+  pk: 4
+  fields:
+    name: PATCH
+- model: common_code.httpmethod
+  pk: 5
+  fields:
+    name: HEAD
+- model: common_code.httpmethod
+  pk: 6
+  fields:
+    name: DELETE
+- model: common_code.httpmethod
+  pk: 7
+  fields:
+    name: OPTIONAL
